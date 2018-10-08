@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white">
+
+    <com.nicolettilu.hiddensearchwithrecyclerview.HiddenSearchWithRecyclerView
+        android:id="@+id/sdtsrv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:scrollToBottomBeforeHide="true"
+        app:scrollToTopBeforeShow="true"
+        app:visibleAtInit="true">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/myRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.nicolettilu.hiddensearchwithrecyclerview.HiddenSearchWithRecyclerView>
+
+</android.support.constraint.ConstraintLayout>

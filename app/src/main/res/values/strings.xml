@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">HiddenSearchWithRecyclerViewSample</string>
+    <string name="app_name">Sample</string>
+    <string name="load_default">Default example</string>
+    <string name="scroll_before_hide_show">Scroll before S and H example</string>
+    <string name="show_at_init">Show at init example</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet consectetur adipiscing elit Nullam suscipit urna quam sed tempor odio iaculis at Integer neque nunc vehicula et posuere id ornare at nibh Donec sit amet molestie lectus Nunc non eleifend nisl Aliquam bibendum odio a molestie interdum eros metus porttitor turpis ut elementum risus nisi vitae diam Nulla justo lectus posuere in sollicitudin at pharetra eu ligula Integer pulvinar blandit sagittis Nam scelerisque et neque in dictum Suspendisse potenti Nulla ac ex varius diam laoreet fringilla sit amet sed lectus Maecenas interdum accumsan velit sed commodo Nam quam diam maximus vel faucibus nec porta vitae</string>
 </resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HiddenSearchWithRecyclerView">
+        <attr name="filterWhileTyping" format="boolean"/>
+
+        <attr name="scrollToTopBeforeShow" format="boolean" />
+        <attr name="scrollToBottomBeforeHide" format="boolean" />
+
+        <attr name="visibleAtInit" format="boolean" />
+        <attr name="hideAtScroll" format="boolean" />
+    </declare-styleable>
+</resources>
