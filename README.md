@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lnicolet/scrolldowntosearchrecyclerview.svg?branch=master)](https://travis-ci.org/lnicolet/scrolldowntosearchrecyclerview)
+[![Build Status](https://travis-ci.org/lnicolet/HiddenSearchWithRecyclerView.svg?branch=master)](https://travis-ci.org/lnicolet/HiddenSearchWithRecyclerView)
 
 # Scroll Down To Search Recycler View
 An easy way to search in your recycler view without having an always-on display search view.
