@@ -14,7 +14,6 @@ import android.widget.*
 import com.nicolettilu.scrolldowntosearchrecyclerview.utils.Movement
 import com.nicolettilu.scrolldowntosearchrecyclerview.utils.Utils
 
-
 /**
  * Created by Luca Nicoletti
  * © 28/07/2018
@@ -44,6 +43,7 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
     private var lastYDrag: Float = 0F
     private var startYDrag: Float = 0F
     private var movementDirection: Movement = Movement.UP
+    private var searchHeight = 0
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -71,9 +71,13 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
                 searchBarLayoutParams.rightToRight = id
                 searchBarLinearLayout.layoutParams = searchBarLayoutParams
 
+                searchBarLinearLayout.measure(View.MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY),
+                        View.MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED))
+                searchHeight = searchBarLinearLayout.measuredHeight
+
                 addView(searchBarLinearLayout, 1, searchBarLayoutParams)
 
-                recyclerViewLayoutParams.topToTop = searchBarLinearLayout.id
+                recyclerViewLayoutParams.topToBottom = searchBarLinearLayout.id
                 recyclerViewLayoutParams.bottomToBottom = id
                 recyclerViewLayoutParams.leftToLeft = id
                 recyclerViewLayoutParams.rightToRight = id
@@ -170,7 +174,7 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
     private fun initLayoutAndListeners() {
 
         if (!visibleAtInit) {
-            searchBarLinearLayout.y = -Utils.convertDpToPixel(context, 70f)
+            searchBarLinearLayout.y = - searchHeight.toFloat()
         } else {
             searchBarLinearLayout.y = 0f
         }
@@ -239,14 +243,14 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
                 searchBarCanMoveUp = true
             }
         } else {
-            if (-Utils.convertDpToPixel(context, 70f) <= searchBarLinearLayout.y) {
+            if (-searchHeight.toFloat() <= searchBarLinearLayout.y) {
                 searchBarLinearLayout.y += delta.toInt()
                 recyclerViewLayoutParams.topMargin += delta.toInt()
                 isSearchBarVisible = true
                 searchBarCanMoveDown = true
                 searchBarCanMoveUp = true
             } else {
-                searchBarLinearLayout.y = -Utils.convertDpToPixel(context, 70f)
+                searchBarLinearLayout.y = -searchHeight.toFloat()
                 recyclerViewLayoutParams.topMargin = 0
                 isSearchBarVisible = false
                 searchBarCanMoveDown = true
