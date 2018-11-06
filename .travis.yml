@@ -35,14 +35,6 @@ android:
     - yes | sdkmanager "platforms;android-28"
 
 
-before_script:
-  - touch local.properties
-  # Create and start emulator.
-  - echo no | android create avd --force -n test -t "android-"$ANDROID_EMULATOR_LEVEL --abi $ANDROID_ABI --tag $ANDROID_TAG
-  - emulator -avd test -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
-
 before_install:
   - yes | sdkmanager "platforms;android-27"
   - yes | sdkmanager "platforms;android-28"
