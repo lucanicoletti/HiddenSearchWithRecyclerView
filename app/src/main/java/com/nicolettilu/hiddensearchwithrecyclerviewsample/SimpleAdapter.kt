@@ -1,11 +1,13 @@
 package com.nicolettilu.hiddensearchwithrecyclerviewsample
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.view.View
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
+import java.lang.ref.WeakReference
 
 /**
  * Created by Luca Nicoletti
@@ -25,7 +27,7 @@ class SimpleAdapter(private val arrayOfStrings: List<String>) : RecyclerView.Ada
                         results.values = arrayOfStrings
                     } else {
                         copyOfStrings = arrayOfStrings.filter {
-                            it.contains(value.toString(), true)
+                            it.contains(value, true)
                         }
                         results.values = copyOfStrings
                     }
@@ -41,6 +43,8 @@ class SimpleAdapter(private val arrayOfStrings: List<String>) : RecyclerView.Ada
 
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): ViewHolder {
+        val x = WeakReference<Context>(parent.context) as WeakReference<Context>
+
         return ViewHolder(View.inflate(parent.context, R.layout.simple_adapter, null))
     }
 
