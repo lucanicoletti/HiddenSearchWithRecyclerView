@@ -70,6 +70,8 @@ hiddenSearchWithInRecycler.filterWhileTyping = true
 
 
 Here as some example of the results:
+
+
 Default example (no configurations set) ![default sample](default_example.gif)
 
 Scroll at top/bottom before hide/show `SearchView` example ![scroll before hide sample](sbh_example.gif)
