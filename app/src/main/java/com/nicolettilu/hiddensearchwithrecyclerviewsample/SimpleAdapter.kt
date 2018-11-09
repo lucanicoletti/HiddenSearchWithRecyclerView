@@ -19,21 +19,21 @@ class SimpleAdapter(private val arrayOfStrings: List<String>) : RecyclerView.Ada
 
     override fun getFilter(): Filter =
             object : Filter() {
-                override fun performFiltering(p0: CharSequence?): FilterResults {
+                override fun performFiltering(value: CharSequence?): FilterResults {
                     val results = FilterResults()
-                    if (p0.isNullOrEmpty()) {
+                    if (value.isNullOrEmpty()) {
                         results.values = arrayOfStrings
                     } else {
                         copyOfStrings = arrayOfStrings.filter {
-                            it.contains(p0 ?: "", true)
+                            it.contains(value, true)
                         }
                         results.values = copyOfStrings
                     }
                     return results
                 }
 
-                override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
-                    copyOfStrings = (p1?.values as? List<String>) ?: listOf()
+                override fun publishResults(value: CharSequence?, results: FilterResults?) {
+                    copyOfStrings = (results?.values as? List<String>).orEmpty()
                     notifyDataSetChanged()
                 }
 

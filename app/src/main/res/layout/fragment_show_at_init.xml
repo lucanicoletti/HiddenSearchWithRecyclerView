@@ -6,11 +6,12 @@
     android:background="@android:color/white">
 
     <com.nicolettilu.hiddensearchwithrecyclerview.HiddenSearchWithRecyclerView
-        android:id="@+id/sdtsrv"
+        android:id="@+id/hidden_search_with_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:scrollToBottomBeforeHide="true"
         app:scrollToTopBeforeShow="true"
+        app:filterWhileTyping="false"
         app:visibleAtInit="true">
 
         <android.support.v7.widget.RecyclerView

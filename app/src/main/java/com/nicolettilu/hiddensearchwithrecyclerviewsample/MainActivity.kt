@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.load_frag_show_hide).setOnClickListener {
             val fragmentTransaction = supportFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.frag_container, FragmentScrollBeforeShowHide())
-            fragmentTransaction.addToBackStack("SHBS")
+            fragmentTransaction.addToBackStack(FragmentScrollBeforeShowHide.TAG)
             fragmentTransaction.commit()
 
         }
@@ -21,14 +21,14 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.load_frag_default).setOnClickListener {
             val fragmentTransaction = supportFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.frag_container, FragmentDefaultBehaviour())
-            fragmentTransaction.addToBackStack("DFLT")
+            fragmentTransaction.addToBackStack(FragmentDefaultBehaviour.TAG)
             fragmentTransaction.commit()
         }
 
         findViewById<Button>(R.id.load_frag_show_at_init).setOnClickListener {
             val fragmentTransaction = supportFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.frag_container, FragmentShowAtInit())
-            fragmentTransaction.addToBackStack("SAIN")
+            fragmentTransaction.addToBackStack(FragmentShowAtInit.TAG)
             fragmentTransaction.commit()
         }
     }

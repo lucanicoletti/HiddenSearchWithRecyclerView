@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.nicolettilu.hiddensearchwithrecyclerview.HiddenSearchWithRecyclerView
 
 /**
  * Created by Luca Nicoletti
@@ -15,6 +16,10 @@ import android.view.ViewGroup
  */
 
 class FragmentShowAtInit: Fragment() {
+
+    companion object {
+        const val TAG = "FragmentShowAtInit"
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -25,6 +30,14 @@ class FragmentShowAtInit: Fragment() {
 
         rootView.findViewById<RecyclerView>(R.id.myRecyclerView).layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rootView.findViewById<RecyclerView>(R.id.myRecyclerView).adapter = SimpleAdapter(arrayOfStrings.orEmpty())
+
+        val hiddenSearchWithInRecycler = rootView.findViewById(R.id.hidden_search_with_recycler) as HiddenSearchWithRecyclerView
+
+        hiddenSearchWithInRecycler.hideAtScroll = true
+        hiddenSearchWithInRecycler.visibleAtInit = false
+        hiddenSearchWithInRecycler.scrollToBottomBeforeHide = false
+        hiddenSearchWithInRecycler.scrollToTopBeforeShow = false
+        hiddenSearchWithInRecycler.filterWhileTyping = true
 
         return rootView
     }

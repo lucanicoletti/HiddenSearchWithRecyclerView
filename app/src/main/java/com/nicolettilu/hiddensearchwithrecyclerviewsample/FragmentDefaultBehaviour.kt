@@ -16,6 +16,10 @@ import android.view.ViewGroup
 
 class FragmentDefaultBehaviour: Fragment() {
 
+    companion object {
+        const val TAG = "FragmentDefaultBehaviour"
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val rootView = inflater.inflate(R.layout.fragment_default, container, false)

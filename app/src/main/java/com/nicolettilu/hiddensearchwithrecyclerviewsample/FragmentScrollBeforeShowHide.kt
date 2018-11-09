@@ -16,6 +16,10 @@ import android.view.ViewGroup
 
 class FragmentScrollBeforeShowHide: Fragment() {
 
+    companion object {
+        const val TAG = "FragmentScrollBeforeShowHide"
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val rootView = inflater.inflate(R.layout.fragment_scroll_before_hide_show, container, false)

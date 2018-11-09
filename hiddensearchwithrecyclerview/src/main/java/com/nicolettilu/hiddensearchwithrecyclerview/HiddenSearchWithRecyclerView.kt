@@ -28,12 +28,12 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
         const val MIN_TAP_MOVEMENT = 5f
     }
 
-    var hideAtScroll = true
-    var scrollToTopBeforeShow = false
-    var scrollToBottomBeforeHide = false
-    var filterWhileTyping = true
+    public var hideAtScroll = true
+    public var scrollToTopBeforeShow = false
+    public var scrollToBottomBeforeHide = false
+    public var filterWhileTyping = true
+    public var visibleAtInit = false
 
-    private var visibleAtInit = false
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchBarLinearLayout: LinearLayout
     private lateinit var searchBarSearchView: SearchView
