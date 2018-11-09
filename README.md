@@ -5,7 +5,7 @@
 
 An easy way to search in your recycler view without having an always-on display search view.
 
-![default sample](default_sample.gif)
+![default sample](default_example.gif)
 
 How does it work?
 
@@ -71,7 +71,9 @@ hiddenSearchWithInRecycler.filterWhileTyping = true
 
 Here as some example of the results:
 Default example (no configurations set) ![default sample](default_example.gif)
+
 Scroll at top/bottom before hide/show `SearchView` example ![scroll before hide sample](sbh_example.gif)
+
 `SearchView` shown at init example ![show at init sample](sai_example.gif)
 
 &nbsp;
