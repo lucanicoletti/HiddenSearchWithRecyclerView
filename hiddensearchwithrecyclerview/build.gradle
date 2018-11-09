@@ -36,8 +36,8 @@ ext {
     siteUrl = 'https://github.com/lnicolet/hiddensearchwithrecyclerview'
     gitUrl = 'https://github.com/lnicolet/hiddensearchwithrecyclerview.git'
 
-    libraryVersion = '0.0.1'
-    libraryVersionName = '0.0.1'
+    libraryVersion = '0.0.2'
+    libraryVersionName = '0.0.2'
 
     developerId = 'nicolettilu'
     developerName = 'Luca Nicoletti'
