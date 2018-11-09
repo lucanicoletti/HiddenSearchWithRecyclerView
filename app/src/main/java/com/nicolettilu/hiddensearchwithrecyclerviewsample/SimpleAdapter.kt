@@ -25,7 +25,7 @@ class SimpleAdapter(private val arrayOfStrings: List<String>) : RecyclerView.Ada
                         results.values = arrayOfStrings
                     } else {
                         copyOfStrings = arrayOfStrings.filter {
-                            it.contains(value, true)
+                            it.contains(value.toString(), true)
                         }
                         results.values = copyOfStrings
                     }
