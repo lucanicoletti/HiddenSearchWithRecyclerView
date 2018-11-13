@@ -66,9 +66,12 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
 
                 val recyclerViewLayoutParams = recyclerView.layoutParams as ConstraintLayout.LayoutParams
                 val searchBarLayoutParams = ConstraintLayout.LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-                searchBarLayoutParams.topToTop = id
-                searchBarLayoutParams.leftToLeft = id
-                searchBarLayoutParams.rightToRight = id
+
+                searchBarLayoutParams.apply {
+                    topToTop = id
+                    leftToLeft = id
+                    rightToRight = id
+                }
                 searchBarLinearLayout.layoutParams = searchBarLayoutParams
 
                 searchBarLinearLayout.measure(View.MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY),
@@ -77,10 +80,13 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
 
                 addView(searchBarLinearLayout, 1, searchBarLayoutParams)
 
-                recyclerViewLayoutParams.topToBottom = searchBarLinearLayout.id
-                recyclerViewLayoutParams.bottomToBottom = id
-                recyclerViewLayoutParams.leftToLeft = id
-                recyclerViewLayoutParams.rightToRight = id
+
+                recyclerViewLayoutParams.apply {
+                    topToBottom = searchBarLinearLayout.id
+                    bottomToBottom = id
+                    leftToLeft = id
+                    rightToRight = id
+                }
                 recyclerView.layoutParams = recyclerViewLayoutParams
             }
             2 -> {
@@ -173,10 +179,10 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
 
     private fun initLayoutAndListeners() {
 
-        if (!visibleAtInit) {
-            searchBarLinearLayout.y = - searchHeight.toFloat()
+        searchBarLinearLayout.y = if (!visibleAtInit) {
+            -searchHeight.toFloat()
         } else {
-            searchBarLinearLayout.y = 0f
+            0f
         }
 
         searchBarSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -231,13 +237,17 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
         if (delta > 0) {
             if (searchBarLinearLayout.y >= 0) {
                 searchBarLinearLayout.y = 0f
-                recyclerViewLayoutParams.topMargin = searchBarLinearLayout.height
+                recyclerViewLayoutParams.apply {
+                    topMargin = searchBarLinearLayout.height
+                }
                 isSearchBarVisible = true
                 searchBarCanMoveDown = false
                 searchBarCanMoveUp = true
             } else {
                 searchBarLinearLayout.y += delta.toInt()
-                recyclerViewLayoutParams.topMargin += delta.toInt()
+                recyclerViewLayoutParams.apply {
+                    topMargin += delta.toInt()
+                }
                 isSearchBarVisible = true
                 searchBarCanMoveDown = true
                 searchBarCanMoveUp = true
@@ -245,13 +255,17 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
         } else {
             if (-searchHeight.toFloat() <= searchBarLinearLayout.y) {
                 searchBarLinearLayout.y += delta.toInt()
-                recyclerViewLayoutParams.topMargin += delta.toInt()
+                recyclerViewLayoutParams.apply {
+                    topMargin += delta.toInt()
+                }
                 isSearchBarVisible = true
                 searchBarCanMoveDown = true
                 searchBarCanMoveUp = true
             } else {
                 searchBarLinearLayout.y = -searchHeight.toFloat()
-                recyclerViewLayoutParams.topMargin = 0
+                recyclerViewLayoutParams.apply {
+                    topMargin = 0
+                }
                 isSearchBarVisible = false
                 searchBarCanMoveDown = true
                 searchBarCanMoveUp = false

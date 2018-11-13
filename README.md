@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lnicolet/HiddenSearchWithRecyclerView.svg?branch=master)](https://travis-ci.org/lnicolet/HiddenSearchWithRecyclerView) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [ ![Download](https://api.bintray.com/packages/lnicolet/HiddenSearchWithRecyclerView/HiddenSearchWithRecyclerView/images/download.svg) ](https://bintray.com/lnicolet/HiddenSearchWithRecyclerView/HiddenSearchWithRecyclerView/_latestVersion)
+[![Build Status](https://travis-ci.org/lnicolet/HiddenSearchWithRecyclerView.svg?branch=master)](https://travis-ci.org/lnicolet/HiddenSearchWithRecyclerView) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [ ![Download](https://api.bintray.com/packages/lnicolet/HiddenSearchWithRecyclerView/HiddenSearchWithRecyclerView/images/download.svg) ](https://bintray.com/lnicolet/HiddenSearchWithRecyclerView/HiddenSearchWithRecyclerView/_latestVersion) [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-Hidden%20SearchView%20in%20RecyclerView-green.svg?style=flat )]( https://android-arsenal.com/details/1/7306 )
 
 # Scroll Down To Search Recycler View
 
@@ -87,7 +87,7 @@ Here as some example of the results:
 The MIT License (MIT)
 =====================
 
-Copyright © `<year>` `<copyright holders>`
+Copyright © `2018` `Luca Nicoletti`
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
