@@ -28,11 +28,11 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
         const val MIN_TAP_MOVEMENT = 5f
     }
 
-    public var hideAtScroll = true
-    public var scrollToTopBeforeShow = false
-    public var scrollToBottomBeforeHide = false
-    public var filterWhileTyping = true
-    public var visibleAtInit = false
+    var hideAtScroll = true
+    var scrollToTopBeforeShow = false
+    var scrollToBottomBeforeHide = false
+    var filterWhileTyping = true
+    var visibleAtInit = false
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchBarLinearLayout: LinearLayout
@@ -179,10 +179,12 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
 
     private fun initLayoutAndListeners() {
 
-        searchBarLinearLayout.y = if (!visibleAtInit) {
-            -searchHeight.toFloat()
+        if (!visibleAtInit) {
+            searchBarLinearLayout.y =  -searchHeight.toFloat()
+            recyclerView.y = 0f
         } else {
-            0f
+            searchBarLinearLayout.y =  0f
+            recyclerView.y = searchHeight.toFloat()
         }
 
         searchBarSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
