@@ -31,14 +31,6 @@ class FragmentShowAtInit: Fragment() {
         rootView.findViewById<RecyclerView>(R.id.myRecyclerView).layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rootView.findViewById<RecyclerView>(R.id.myRecyclerView).adapter = SimpleAdapter(arrayOfStrings.orEmpty())
 
-        val hiddenSearchWithInRecycler = rootView.findViewById(R.id.hidden_search_with_recycler) as HiddenSearchWithRecyclerView
-
-        hiddenSearchWithInRecycler.hideAtScroll = true
-        hiddenSearchWithInRecycler.visibleAtInit = false
-        hiddenSearchWithInRecycler.scrollToBottomBeforeHide = false
-        hiddenSearchWithInRecycler.scrollToTopBeforeShow = false
-        hiddenSearchWithInRecycler.filterWhileTyping = true
-
         return rootView
     }
 }

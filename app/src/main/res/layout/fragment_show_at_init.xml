@@ -9,8 +9,8 @@
         android:id="@+id/hidden_search_with_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:scrollToBottomBeforeHide="true"
-        app:scrollToTopBeforeShow="true"
+        app:scrollToBottomBeforeHide="false"
+        app:scrollToTopBeforeShow="false"
         app:filterWhileTyping="false"
         app:visibleAtInit="true">
 
