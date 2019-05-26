@@ -1,5 +1,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7f779367ae9d4b8d81970c791dd1a0b9)](https://app.codacy.com/app/lnicolet/HiddenSearchWithRecyclerView?utm_source=github.com&utm_medium=referral&utm_content=lnicolet/HiddenSearchWithRecyclerView&utm_campaign=Badge_Grade_Dashboard)
-[![Build Status](https://travis-ci.org/lnicolet/HiddenSearchWithRecyclerView.svg?branch=master)](https://travis-ci.org/lnicolet/HiddenSearchWithRecyclerView) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [ ![Download](https://api.bintray.com/packages/lnicolet/HiddenSearchWithRecyclerView/HiddenSearchWithRecyclerView/images/download.svg) ](https://bintray.com/lnicolet/HiddenSearchWithRecyclerView/HiddenSearchWithRecyclerView/_latestVersion) [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-Hidden%20SearchView%20in%20RecyclerView-green.svg?style=flat )]( https://android-arsenal.com/details/1/7306 )
+[![Build Status](https://travis-ci.org/lnicolet/HiddenSearchWithRecyclerView.svg?branch=master)](https://travis-ci.org/lnicolet/HiddenSearchWithRecyclerView)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [ ![Download](https://api.bintray.com/packages/lnicolet/HiddenSearchWithRecyclerView/HiddenSearchWithRecyclerView/images/download.svg) ](https://bintray.com/lnicolet/HiddenSearchWithRecyclerView/HiddenSearchWithRecyclerView/_latestVersion)
+[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-Hidden%20SearchView%20in%20RecyclerView-green.svg?style=flat )]( https://android-arsenal.com/details/1/7306 )
 
 # Scroll Down To Search Recycler View
 
@@ -17,7 +19,7 @@ Ever wanted a recycler view with a search bar? That's a simple library that lets
 To include this library in your Android project you have to use `gradle`.
 
 ``` gradle
-compile 'com.nicolettilu:hiddensearchwithrecyclerview:0.0.2'
+compile 'com.nicolettilu:hiddensearchwithrecyclerview:0.0.4'
 ```
 
 ### Setup
@@ -72,17 +74,10 @@ hiddenSearchWithInRecycler.filterWhileTyping = true
 
 Here as some example of the results:
 
+| Default example | Scroll at top/bottom before hide/show `SearchView` | `SearchView` shown at init example |
+| :-------------: | :-------------: | :-----: |
+| ![default sample](default_example.gif) | ![scroll before hide sample](sbh_example.gif) | ![show at init sample](sai_example.gif) |
 
-- Default example (no configurations set) 
-![default sample](default_example.gif)
-
-- Scroll at top/bottom before hide/show `SearchView` example 
-![scroll before hide sample](sbh_example.gif)
-
-- `SearchView` shown at init example 
-![show at init sample](sai_example.gif)
-
-&nbsp;
 &nbsp;
 
 The MIT License (MIT)
