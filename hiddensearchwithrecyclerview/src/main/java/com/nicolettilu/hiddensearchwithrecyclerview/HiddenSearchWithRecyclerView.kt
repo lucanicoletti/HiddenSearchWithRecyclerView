@@ -22,7 +22,11 @@ import com.nicolettilu.scrolldowntosearchrecyclerview.utils.Movement
  * All rights reserved.
  */
 
-class HiddenSearchWithRecyclerView : ConstraintLayout {
+class HiddenSearchWithRecyclerView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     companion object {
         private const val ANIM_DURATION = 300L
@@ -54,10 +58,7 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
     private var searchBarCanMoveUp = false
     private var searchBarCanMoveDown = true
 
-    constructor(context: Context) : this(context, null)
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-        super(context, attrs, defStyleAttr) {
+    init {
         parseStyleAttrs(attrs)
     }
 
@@ -85,7 +86,7 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
     private fun setupViews() {
         searchBarSearchView = searchBarLinearLayout.findViewById(R.id.searchBarSearchView)
 
-        val recyclerViewLayoutParams = recyclerView.layoutParams as LayoutParams
+        val recyclerViewLayoutParams = recyclerView.layoutParams as? LayoutParams
         val searchBarLayoutParams = LayoutParams(
             LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
@@ -106,7 +107,7 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
 
         addView(searchBarLinearLayout, 1, searchBarLayoutParams)
 
-        recyclerViewLayoutParams.apply {
+        recyclerViewLayoutParams?.apply {
             topToBottom = searchBarLinearLayout.id
             bottomToBottom = id
             leftToLeft = id
@@ -198,8 +199,7 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
         if (delta > 0) {
             if (
                 searchBarCanMoveDown &&
-                checkRecyclerNeedToScroll(movementDirection) &&
-                !searchBarSearchView.hasFocus()
+                checkRecyclerNeedToScroll(movementDirection)
             ) {
                 dragSearch(delta)
             } else {
@@ -209,8 +209,7 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
             if (
                 searchBarCanMoveUp &&
                 checkRecyclerNeedToScroll(movementDirection) &&
-                hideAtScroll &&
-                !searchBarSearchView.hasFocus()
+                hideAtScroll
             ) {
                 dragSearch(delta)
             } else {
@@ -218,6 +217,7 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
             }
         }
     }
+
 
     override fun onInterceptTouchEvent(event: MotionEvent?): Boolean {
         super.onInterceptTouchEvent(event)
@@ -244,8 +244,8 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
             searchBarLinearLayout.y = -searchHeight.toFloat()
         } else {
             searchBarLinearLayout.y = 0f
-            val layoutParams = recyclerView.layoutParams as LayoutParams
-            layoutParams.apply {
+            val layoutParams = recyclerView.layoutParams as? LayoutParams
+            layoutParams?.apply {
                 topMargin += searchHeight
             }
             recyclerView.layoutParams = layoutParams
@@ -255,7 +255,7 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
             override fun onQueryTextSubmit(value: String?): Boolean {
                 if (filterWhileTyping) {
                     if (recyclerView.adapter is Filterable) {
-                        (recyclerView.adapter as Filterable).filter.filter(value)
+                        (recyclerView.adapter as? Filterable)?.filter?.filter(value)
                     }
                 }
                 searchBarSearchView.clearFocus()
@@ -264,7 +264,7 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
 
             override fun onQueryTextChange(value: String?): Boolean {
                 if (recyclerView.adapter is Filterable) {
-                    (recyclerView.adapter as Filterable).filter.filter(value)
+                    (recyclerView.adapter as? Filterable)?.filter?.filter(value)
                 }
                 return true
             }
@@ -278,12 +278,12 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
             Movement.DOWN -> {
                 val firstElementVisibleInRecycler =
                     (recyclerView.layoutManager as? LinearLayoutManager)?.findFirstVisibleItemPosition()
-                checkRecyclerNeedToScrollOnDownMovement(firstElementVisibleInRecycler)
+                checkRecyclerNeedToScrollOnDownMovement(firstElementVisibleInRecycler) && !searchBarSearchView.hasFocus()
             }
             Movement.UP -> {
                 val lastElementVisibleInRecycler =
                     (recyclerView.layoutManager as? LinearLayoutManager)?.findLastCompletelyVisibleItemPosition()
-                checkRecyclerNeedToScrollOnUpMovement(lastElementVisibleInRecycler)
+                checkRecyclerNeedToScrollOnUpMovement(lastElementVisibleInRecycler) && !searchBarSearchView.hasFocus()
             }
             else -> false
         }
@@ -306,7 +306,7 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
     }
 
     private fun dragSearch(delta: Float) {
-        val recyclerViewLayoutParams = recyclerView.layoutParams as LayoutParams
+        val recyclerViewLayoutParams = recyclerView.layoutParams as? LayoutParams
         recyclerView.layoutParams = if (delta > 0) {
             if (searchBarLinearLayout.y >= 0) {
                 dragSearchPositiveDeltaSearchBarVisible(recyclerViewLayoutParams)
@@ -323,54 +323,54 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
         recyclerView.layoutParams = recyclerViewLayoutParams
     }
 
-    private fun dragSearchPositiveDeltaSearchBarVisible(params: LayoutParams): LayoutParams {
+    private fun dragSearchPositiveDeltaSearchBarVisible(params: LayoutParams?): LayoutParams? {
         searchBarLinearLayout.y = 0f
         isSearchBarVisible = true
         searchBarCanMoveDown = false
         searchBarCanMoveUp = true
-        return params.apply {
+        return params?.apply {
             topMargin = searchBarLinearLayout.height
         }
     }
 
     private fun dragSearchPositiveDeltaSearchBarNotVisible(
-        params: LayoutParams,
+        params: LayoutParams?,
         delta: Float
-    ): LayoutParams {
+    ): LayoutParams? {
         searchBarLinearLayout.y += delta.toInt()
         isSearchBarVisible = true
         searchBarCanMoveDown = true
         searchBarCanMoveUp = true
-        return params.apply {
+        return params?.apply {
             topMargin += delta.toInt()
         }
     }
 
     private fun dragSearchNegativeDeltaSearchBarVisible(
-        params: LayoutParams,
+        params: LayoutParams?,
         delta: Float
-    ): LayoutParams {
+    ): LayoutParams? {
         searchBarLinearLayout.y += delta.toInt()
         isSearchBarVisible = true
         searchBarCanMoveDown = true
         searchBarCanMoveUp = true
-        return params.apply {
+        return params?.apply {
             topMargin += delta.toInt()
         }
     }
 
-    private fun dragSearchNegativeDeltaSearchBarNotVisible(params: LayoutParams): LayoutParams {
+    private fun dragSearchNegativeDeltaSearchBarNotVisible(params: LayoutParams?): LayoutParams? {
         searchBarLinearLayout.y = -searchHeight.toFloat()
         isSearchBarVisible = false
         searchBarCanMoveDown = true
         searchBarCanMoveUp = false
-        return params.apply {
+        return params?.apply {
             topMargin = 0
         }
     }
 
     private fun moveSearchToVisible() {
-        val recyclerViewLayoutParams = recyclerView.layoutParams as LayoutParams
+        val recyclerViewLayoutParams = recyclerView.layoutParams as? LayoutParams
 
         val startY = searchBarLinearLayout.y
         val endY = 0f
@@ -385,14 +385,14 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
         modalAnimator.duration = if (duration > 0) duration else 0
         modalAnimator.addUpdateListener {
             val topMargin = searchBarLinearLayout.y.toInt() + searchBarLinearLayout.height
-            recyclerViewLayoutParams.topMargin = topMargin
+            recyclerViewLayoutParams?.topMargin = topMargin
             recyclerView.layoutParams = recyclerViewLayoutParams
         }
         modalAnimator.start()
     }
 
     private fun moveSearchBarToHide() {
-        val recyclerViewLayoutParams = recyclerView.layoutParams as LayoutParams
+        val recyclerViewLayoutParams = recyclerView.layoutParams as? LayoutParams
 
         val startY = searchBarLinearLayout.y
         val endY = -searchBarLinearLayout.height.toFloat()
@@ -407,7 +407,7 @@ class HiddenSearchWithRecyclerView : ConstraintLayout {
         modalAnimator.duration = if (duration > 0) duration else 0
         modalAnimator.addUpdateListener {
             val topMargin = searchBarLinearLayout.y.toInt() + searchBarLinearLayout.height
-            recyclerViewLayoutParams.topMargin = topMargin
+            recyclerViewLayoutParams?.topMargin = topMargin
             recyclerView.layoutParams = recyclerViewLayoutParams
         }
         modalAnimator.start()
