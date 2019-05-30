@@ -1,12 +1,12 @@
 package com.nicolettilu.hiddensearchwithrecyclerviewsample
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Created by Luca Nicoletti
@@ -27,7 +27,7 @@ class FragmentDefaultBehaviour: Fragment() {
         val string = context?.resources?.getString(R.string.lorem_ipsum)
         val arrayOfStrings = string?.split(" ")
 
-        rootView.findViewById<RecyclerView>(R.id.myRecyclerView).layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        rootView.findViewById<RecyclerView>(R.id.myRecyclerView).layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         rootView.findViewById<RecyclerView>(R.id.myRecyclerView).adapter = SimpleAdapter(arrayOfStrings.orEmpty())
 
         return rootView
