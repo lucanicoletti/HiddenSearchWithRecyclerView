@@ -3,16 +3,16 @@ package com.nicolettilu.hiddensearchwithrecyclerview
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
-import android.support.constraint.ConstraintLayout
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.SearchView
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filterable
 import android.widget.LinearLayout
+import androidx.appcompat.widget.SearchView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.nicolettilu.hiddensearchwithrecyclerview.utils.Utils
 import com.nicolettilu.scrolldowntosearchrecyclerview.utils.Movement
 

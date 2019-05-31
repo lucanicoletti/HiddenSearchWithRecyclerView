@@ -1,11 +1,11 @@
 package com.nicolettilu.hiddensearchwithrecyclerviewsample
 
-import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.view.View
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Created by Luca Nicoletti

@@ -29,7 +29,7 @@ Here's how it works:
 <com.nicolettilu.hiddensearchwithrecyclerview.HiddenSearchWithRecyclerView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </com.nicolettilu.hiddensearchwithrecyclerview.HiddenSearchWithRecyclerView>
