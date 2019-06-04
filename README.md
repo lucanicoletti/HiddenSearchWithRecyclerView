@@ -19,7 +19,7 @@ Ever wanted a recycler view with a search bar? That's a simple library that lets
 To include this library in your Android project you have to use `gradle`.
 
 ``` gradle
-compile 'com.nicolettilu:hiddensearchwithrecyclerview:0.0.4'
+compile 'com.nicolettilu:hiddensearchwithrecyclerview:0.0.5'
 ```
 
 ### Setup
