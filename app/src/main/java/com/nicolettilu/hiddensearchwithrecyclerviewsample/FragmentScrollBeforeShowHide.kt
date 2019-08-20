@@ -14,21 +14,27 @@ import androidx.recyclerview.widget.RecyclerView
  * All rights reserved.
  */
 
-class FragmentScrollBeforeShowHide: Fragment() {
+class FragmentScrollBeforeShowHide : Fragment() {
 
     companion object {
         const val TAG = "FragmentScrollBeforeShowHide"
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val rootView = inflater.inflate(R.layout.fragment_scroll_before_hide_show, container, false)
 
         val string = context?.resources?.getString(R.string.lorem_ipsum)
         val arrayOfStrings = string?.split(" ")
 
-        rootView.findViewById<RecyclerView>(R.id.myRecyclerView).layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        rootView.findViewById<RecyclerView>(R.id.myRecyclerView).adapter = SimpleAdapter(arrayOfStrings.orEmpty())
+        rootView.findViewById<RecyclerView>(R.id.myRecyclerView).layoutManager =
+            LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        rootView.findViewById<RecyclerView>(R.id.myRecyclerView).adapter =
+            SimpleAdapter(arrayOfStrings.orEmpty())
 
         return rootView
     }

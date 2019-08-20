@@ -1,7 +1,8 @@
 package com.nicolettilu.hiddensearchwithrecyclerviewsample
 
-import android.view.ViewGroup
+import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
@@ -13,31 +14,32 @@ import androidx.recyclerview.widget.RecyclerView
  * All rights reserved.
  */
 
-class SimpleAdapter(private val arrayOfStrings: List<String>) : RecyclerView.Adapter<SimpleAdapter.ViewHolder>(), Filterable {
+class SimpleAdapter(private val arrayOfStrings: List<String>) :
+    RecyclerView.Adapter<SimpleAdapter.ViewHolder>(), Filterable {
 
     private var copyOfStrings: List<String> = arrayOfStrings.toList()
 
     override fun getFilter(): Filter =
-            object : Filter() {
-                override fun performFiltering(value: CharSequence?): FilterResults {
-                    val results = FilterResults()
-                    if (value.isNullOrEmpty()) {
-                        results.values = arrayOfStrings
-                    } else {
-                        copyOfStrings = arrayOfStrings.filter {
-                            it.contains(value, true)
-                        }
-                        results.values = copyOfStrings
+        object : Filter() {
+            override fun performFiltering(value: CharSequence?): FilterResults {
+                val results = FilterResults()
+                if (value.isNullOrEmpty()) {
+                    results.values = arrayOfStrings
+                } else {
+                    copyOfStrings = arrayOfStrings.filter {
+                        it.contains(value, true)
                     }
-                    return results
+                    results.values = copyOfStrings
                 }
-
-                override fun publishResults(value: CharSequence?, results: FilterResults?) {
-                    copyOfStrings = (results?.values as? List<String>).orEmpty()
-                    notifyDataSetChanged()
-                }
-
+                return results
             }
+
+            override fun publishResults(value: CharSequence?, results: FilterResults?) {
+                copyOfStrings = (results?.values as? List<String>).orEmpty()
+                notifyDataSetChanged()
+            }
+
+        }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): ViewHolder {
@@ -49,13 +51,16 @@ class SimpleAdapter(private val arrayOfStrings: List<String>) : RecyclerView.Ada
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.bind(copyOfStrings[position])
+        viewHolder.bind(copyOfStrings[position], position)
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(value: String) {
+        fun bind(value: String, position: Int) {
             this.itemView.findViewById<TextView>(R.id.simple_text).text = value
+            this.itemView.setOnClickListener {
+                Log.e("CLCK", "Clicked item $value at $position")
+            }
         }
     }
 }
