@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nicolettilu.hiddensearchwithrecyclerview.utils.Utils
 import com.nicolettilu.scrolldowntosearchrecyclerview.utils.Movement
+import kotlin.math.abs
 
 /**
  * Created by Luca Nicoletti
@@ -145,10 +146,8 @@ class HiddenSearchWithRecyclerView @JvmOverloads constructor(
     }
 
     private fun onActionUp(event: MotionEvent) {
-        if (Math.abs(startYDrag - lastYDrag) > Utils.convertDpToPixel(
-                context,
-                MIN_SCROLL_TO_ANIM
-            )
+        if (abs(startYDrag - lastYDrag) >
+            Utils.convertDpToPixel(context, MIN_SCROLL_TO_ANIM)
         ) {
             if (movementDirection == Movement.DOWN) {
                 onDownWithMinScrollDone(event)
@@ -156,7 +155,7 @@ class HiddenSearchWithRecyclerView @JvmOverloads constructor(
                 onUpWithMinScrollDone(event)
             }
         } else {
-            if (Math.abs(startYDrag - lastYDrag) > Utils.convertDpToPixel(
+            if (abs(startYDrag - lastYDrag) > Utils.convertDpToPixel(
                     context,
                     MIN_TAP_MOVEMENT
                 ) && !searchBarSearchView.hasFocus()
@@ -234,7 +233,23 @@ class HiddenSearchWithRecyclerView @JvmOverloads constructor(
                 searchBarSearchView.performClick()
             }
         } else {
-            recyclerView.dispatchTouchEvent(event)
+            when {
+                isSearchBarVisible -> {
+                    val eventToDispatch = MotionEvent.obtain(
+                        event.downTime,
+                        event.eventTime,
+                        event.action,
+                        event.x,
+                        event.y - searchBarLinearLayout.height,
+                        event.metaState
+                    )
+                    recyclerView.dispatchTouchEvent(eventToDispatch)
+                    eventToDispatch.recycle()
+                }
+                else -> {
+                    recyclerView.dispatchTouchEvent(event)
+                }
+            }
         }
     }
 
@@ -375,7 +390,8 @@ class HiddenSearchWithRecyclerView @JvmOverloads constructor(
         val startY = searchBarLinearLayout.y
         val endY = 0f
 
-        val modalAnimator = ObjectAnimator.ofFloat(searchBarLinearLayout, "translationY", startY, endY)
+        val modalAnimator =
+            ObjectAnimator.ofFloat(searchBarLinearLayout, "translationY", startY, endY)
 
         val totalMovement = searchBarLinearLayout.height
         val remainingMovement = -searchBarLinearLayout.y.toInt()
@@ -397,7 +413,8 @@ class HiddenSearchWithRecyclerView @JvmOverloads constructor(
         val startY = searchBarLinearLayout.y
         val endY = -searchBarLinearLayout.height.toFloat()
 
-        val modalAnimator = ObjectAnimator.ofFloat(searchBarLinearLayout, "translationY", startY, endY)
+        val modalAnimator =
+            ObjectAnimator.ofFloat(searchBarLinearLayout, "translationY", startY, endY)
 
         val totalMovement = searchBarLinearLayout.height
         val remainingMovement = searchBarLinearLayout.height - searchBarLinearLayout.y.toInt()
