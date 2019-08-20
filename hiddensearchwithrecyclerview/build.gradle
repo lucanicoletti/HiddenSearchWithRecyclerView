@@ -2,11 +2,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
@@ -36,8 +36,8 @@ ext {
     siteUrl = 'https://github.com/lnicolet/hiddensearchwithrecyclerview'
     gitUrl = 'https://github.com/lnicolet/hiddensearchwithrecyclerview.git'
 
-    libraryVersion = '0.0.5'
-    libraryVersionName = '0.0.5'
+    libraryVersion = '0.0.6'
+    libraryVersionName = '0.0.6'
 
     developerId = 'nicolettilu'
     developerName = 'Luca Nicoletti'
