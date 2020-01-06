@@ -396,7 +396,7 @@ class HiddenSearchWithRecyclerView @JvmOverloads constructor(
         val totalMovement = searchBarLinearLayout.height
         val remainingMovement = -searchBarLinearLayout.y.toInt()
 
-        val duration = if(totalMovement!=0) (ANIM_DURATION / totalMovement * remainingMovement) else 0
+        val duration = if (totalMovement != 0) (ANIM_DURATION / totalMovement * remainingMovement) else 0
 
         modalAnimator.duration = if (duration > 0) duration else 0
         modalAnimator.addUpdateListener {
@@ -452,4 +452,3 @@ class HiddenSearchWithRecyclerView @JvmOverloads constructor(
     }
 
 }
-
